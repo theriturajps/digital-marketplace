@@ -1,0 +1,37 @@
+<div class="bg-gray-800 text-white w-64 min-h-screen hidden md:block">
+  <div class="flex items-center justify-center h-16 border-b border-gray-700">
+    <span class="text-xl font-bold">Admin Dashboard</span>
+  </div>
+  
+  <nav class="mt-4">
+    <a href="/admin/dashboard" class="block px-4 py-2 text-sm <%= currentUrl === '/admin/dashboard' ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+      <i class="fas fa-tachometer-alt w-6 text-center mr-2"></i> Dashboard
+    </a>
+    
+    <a href="/admin/products" class="block px-4 py-2 text-sm <%= currentUrl.startsWith('/admin/products') ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+      <i class="fas fa-box w-6 text-center mr-2"></i> Products
+    </a>
+    
+    <a href="/admin/categories" class="block px-4 py-2 text-sm <%= currentUrl === '/admin/categories' ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+      <i class="fas fa-tags w-6 text-center mr-2"></i> Categories
+    </a>
+    
+    <a href="/admin/orders" class="block px-4 py-2 text-sm <%= currentUrl.startsWith('/admin/orders') ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+      <i class="fas fa-shopping-cart w-6 text-center mr-2"></i> Orders
+    </a>
+    
+    <a href="/admin/coupons" class="block px-4 py-2 text-sm <%= currentUrl === '/admin/coupons' ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+      <i class="fas fa-ticket-alt w-6 text-center mr-2"></i> Coupons
+    </a>
+    
+    <a href="/admin/settings" class="block px-4 py-2 text-sm <%= currentUrl === '/admin/settings' ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+      <i class="fas fa-cog w-6 text-center mr-2"></i> Settings
+    </a>
+    
+    <div class="border-t border-gray-700 mt-4 pt-4">
+      <a href="/admin/logout" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700 transition">
+        <i class="fas fa-sign-out-alt w-6 text-center mr-2"></i> Logout
+      </a>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,55 @@
+<div class="bg-white rounded-lg shadow-sm overflow-hidden product-card">
+  <a href="/products/<%= product.slug %>">
+    <div class="relative pb-[56.25%]">
+      <img 
+        src="<%= product.image %>" 
+        alt="<%= product.title %>" 
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+      >
+      
+      <% if (product.featured) { %>
+        <span class="absolute top-2 left-2 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">
+          Featured
+        </span>
+      <% } %>
+      
+      <% if (product.discountPrice && product.discountPrice < product.price) { %>
+        <span class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+          <%= Math.round((1 - product.discountPrice / product.price) * 100) %>% OFF
+        </span>
+      <% } %>
+    </div>
+  </a>
+  
+  <div class="p-4">
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-xs font-medium text-gray-500"><%= product.fileType.toUpperCase() %> | <%= product.fileSize %></span>
+      <span class="text-xs font-medium text-indigo-600"><%= product.category.name %></span>
+    </div>
+    
+    <a href="/products/<%= product.slug %>" class="block">
+      <h3 class="font-medium text-gray-900 hover:text-indigo-600 transition mb-2 truncate" title="<%= product.title %>">
+        <%= product.title %>
+      </h3>
+    </a>
+    
+    <div class="flex items-center justify-between">
+      <div>
+        <% if (product.discountPrice && product.discountPrice < product.price) { %>
+          <span class="font-bold text-gray-900">₹<%= product.discountPrice.toFixed(2) %></span>
+          <span class="text-sm text-gray-500 line-through ml-1">₹<%= product.price.toFixed(2) %></span>
+        <% } else { %>
+          <span class="font-bold text-gray-900">₹<%= product.price.toFixed(2) %></span>
+        <% } %>
+      </div>
+      
+      <a 
+        href="/checkout?product=<%= product._id %>" 
+        class="text-sm bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded transition duration-200"
+      >
+        Buy Now
+      </a>
+    </div>
+  </div>
+</div>

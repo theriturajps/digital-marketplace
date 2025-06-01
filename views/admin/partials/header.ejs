@@ -1,0 +1,107 @@
+<header class="bg-white shadow">
+  <div class="flex justify-between items-center h-16 px-4">
+    <!-- Mobile menu button -->
+    <button id="mobileMenuBtn" class="md:hidden text-gray-700 hover:text-indigo-600 focus:outline-none">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+    
+    <!-- Title -->
+    <h1 class="text-xl font-bold text-gray-800 md:hidden">Admin Panel</h1>
+    
+    <!-- User menu -->
+    <div class="flex items-center">
+      <div class="relative">
+        <button id="userMenuBtn" class="flex items-center focus:outline-none">
+          <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-700">
+            <i class="fas fa-user"></i>
+          </div>
+          <span class="hidden md:block ml-2 text-sm font-medium text-gray-700"><%= admin.username %></span>
+          <i class="fas fa-chevron-down ml-1 text-xs text-gray-500"></i>
+        </button>
+        
+        <!-- Dropdown menu -->
+        <div id="userMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-10">
+          <div class="px-4 py-2 text-xs text-gray-500">
+            Logged in as <span class="font-medium"><%= admin.username %></span>
+          </div>
+          <div class="border-t border-gray-100"></div>
+          <a href="/admin/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-cog mr-2"></i> Settings
+          </a>
+          <a href="/admin/logout" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+            <i class="fas fa-sign-out-alt mr-2"></i> Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile menu -->
+  <div id="mobileSidebar" class="md:hidden fixed top-16 left-0 w-64 h-full bg-gray-800 text-white z-40 transform -translate-x-full transition-transform duration-300 ease-in-out">
+    <nav class="mt-4">
+      <a href="/admin/dashboard" class="block px-4 py-2 text-sm <%= currentUrl === '/admin/dashboard' ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+        <i class="fas fa-tachometer-alt w-6 text-center mr-2"></i> Dashboard
+      </a>
+      
+      <a href="/admin/products" class="block px-4 py-2 text-sm <%= currentUrl.startsWith('/admin/products') ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+        <i class="fas fa-box w-6 text-center mr-2"></i> Products
+      </a>
+      
+      <a href="/admin/categories" class="block px-4 py-2 text-sm <%= currentUrl === '/admin/categories' ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+        <i class="fas fa-tags w-6 text-center mr-2"></i> Categories
+      </a>
+      
+      <a href="/admin/orders" class="block px-4 py-2 text-sm <%= currentUrl.startsWith('/admin/orders') ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+        <i class="fas fa-shopping-cart w-6 text-center mr-2"></i> Orders
+      </a>
+      
+      <a href="/admin/coupons" class="block px-4 py-2 text-sm <%= currentUrl === '/admin/coupons' ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+        <i class="fas fa-ticket-alt w-6 text-center mr-2"></i> Coupons
+      </a>
+      
+      <a href="/admin/settings" class="block px-4 py-2 text-sm <%= currentUrl === '/admin/settings' ? 'bg-gray-700' : 'hover:bg-gray-700' %> transition">
+        <i class="fas fa-cog w-6 text-center mr-2"></i> Settings
+      </a>
+      
+      <div class="border-t border-gray-700 mt-4 pt-4">
+        <a href="/admin/logout" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700 transition">
+          <i class="fas fa-sign-out-alt w-6 text-center mr-2"></i> Logout
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // User menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const userMenu = document.getElementById('userMenu');
+    
+    userMenuBtn.addEventListener('click', function() {
+      userMenu.classList.toggle('hidden');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!userMenu.contains(event.target) && !userMenuBtn.contains(event.target)) {
+        userMenu.classList.add('hidden');
+      }
+    });
+    
+    // Mobile sidebar toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileSidebar.classList.toggle('-translate-x-full');
+    });
+    
+    // Close mobile sidebar when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!mobileSidebar.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+        mobileSidebar.classList.add('-translate-x-full');
+      }
+    });
+  });
+</script>
