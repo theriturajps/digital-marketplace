@@ -2,6 +2,10 @@
 
 A production-ready e-commerce platform for selling digital files (PDF and ZIP) with guest checkout, Razorpay integration, and comprehensive admin features.
 
+![image](https://github.com/user-attachments/assets/2905f31c-f830-4a95-a371-e46d1e039214)
+![image](https://github.com/user-attachments/assets/2f5a4e94-0295-4cc4-8bae-c2913464655c)
+
+
 ## Features
 
 - Product display with grid layout, search, and pagination
